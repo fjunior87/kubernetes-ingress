@@ -6,8 +6,10 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "nginx-ingress.labels" . | nindent 4 }}
-{{- if .Values.controller.config.annotations }}
+
   annotations:
+    harness.io/skip-versioning: "true"
+{{- if .Values.controller.config.annotations }}
 {{ toYaml .Values.controller.config.annotations | indent 4 }}
 {{- end }}
 data:
